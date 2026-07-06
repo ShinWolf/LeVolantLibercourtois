@@ -61,7 +61,7 @@ export const YOUTH_DOCUMENTS: RegistrationDoc[] = [
   {
     label: "3. Certificat Medical",
     fileName: "certificat_medicale.pdf",
-    url: "/docs/mineurs/public/docs/mineurs/JEUNES_Certificat_medicale_d4ebcd011f.pdf",
+    url: "/docs/mineurs/JEUNES_Certificat_medicale_d4ebcd011f.pdf",
   },
   {
     label: "4. Questionnaire de Sante",

@@ -8,16 +8,21 @@ type RegistrationSidebarProps = {
   onModeChange: (mode: RegistrationMode) => void;
   applicationPdf: string;
   onFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  selectedDocUrl: string;
+  onSelectDoc: (url: string) => void;
 };
 
 export function RegistrationSidebar({
   registrationMode,
   onModeChange,
+  selectedDocUrl,
+  onSelectDoc,
   applicationPdf,
   onFileChange,
 }: RegistrationSidebarProps) {
   const currentDocs =
     registrationMode === "mineur" ? YOUTH_DOCUMENTS : ADULT_DOCUMENTS;
+
   return (
     <aside className="registration-sidebar">
       <p className="notice">Aucun document papier ne sera pris en compte.</p>
@@ -28,51 +33,84 @@ export function RegistrationSidebar({
           type="button"
           onClick={() => onModeChange("mineur")}
         >
-          Mineurs ({YOUTH_DOCUMENTS.length} docs)
+          Mineurs ({YOUTH_DOCUMENTS.length} Docs)
         </button>
         <button
           className={registrationMode === "adulte" ? "filter-active" : ""}
           type="button"
           onClick={() => onModeChange("adulte")}
         >
-          Adultes ({ADULT_DOCUMENTS.length} docs)
+          Adultes ({ADULT_DOCUMENTS.length} Docs)
         </button>
       </div>
 
-      <p className="section-copy">
-        Veuillez telecharger et completer **l'ensemble des pieces** ci-dessous
-        avant de retourner votre dossier.
+      <p className="section-copy" style={{ fontSize: "13px" }}>
+        Cliquez sur un document pour l'éditer à droite. Remplissez-le,
+        téléchargez-le sur votre PC, puis renvoyez-le complété.
       </p>
 
       <div className="download-docs-list">
-        {currentDocs.map((doc, index) => (
-          <a
-            key={index}
-            href={doc.url}
-            download={doc.fileName}
-            className="secondary-action"
-          >
-            <span>{doc.label}</span>
-            <Download size={14} />
-          </a>
-        ))}
+        {currentDocs.map((doc, index) => {
+          const isActive = selectedDocUrl === doc.url;
+          return (
+            <button
+              key={index}
+              type="button"
+              className={`secondary-action download-doc-link ${isActive ? "filter-active" : ""}`}
+              onClick={() => onSelectDoc(doc.url)} // Change le PDF affiché au clic
+            >
+              <span>{doc.label}</span>
+              <a
+                href={doc.url}
+                download={doc.fileName}
+                title="Télécharger le fichier brut"
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  display: "flex",
+                  color: isActive ? "white" : "var(--green)",
+                }}
+              >
+                <Download size={14} className="download-icon" />
+              </a>
+            </button>
+          );
+        })}
       </div>
 
       <div className="pdf-upload">
         <label>
-          Retourner vos documents (compresses en un seul PDF ou ZIP)
+          Sélectionnez vos documents complétés (PDF, ZIP)
           <input
             accept="application/pdf,.pdf,.zip"
             type="file"
+            multiple
             onChange={onFileChange}
           />
         </label>
+
         <div className="pdf-status">
-          <FileText size={18} />
-          <span>{applicationPdf || "Aucun fichier selectionne"}</span>
+          <div>
+            <FileText size={18} style={{ flexShrink: 0 }} />
+            <span style={{ fontSize: "13px" }}>
+              {applicationPdf || "Aucun fichier sélectionné"}
+            </span>
+          </div>
         </div>
-        <button className="primary-action full-width" type="button">
-          Envoyer le dossier complété
+
+        <button
+          className="primary-action full-width"
+          type="button"
+          onClick={() => {
+            if (!applicationPdf) {
+              alert("⚠️ Veuillez sélectionner au moins un document complété !");
+              return;
+            }
+            alert(
+              `🎉 Coté Serveur (Bientôt) : Les fichiers vont être regroupés dans un ZIP unique, puis envoyés par mail au club !`,
+            );
+          }}
+        >
+          Envoyer le dossier complet
         </button>
       </div>
     </aside>
