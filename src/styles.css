@@ -2,7 +2,13 @@
   color: #1c2320;
   background: #f5f7f2;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -133,7 +139,12 @@ main {
   padding: clamp(82px, 10vw, 132px) clamp(18px, 5vw, 70px) 72px;
   color: white;
   background:
-    linear-gradient(90deg, rgba(7, 42, 35, 0.92), rgba(7, 42, 35, 0.72) 52%, rgba(7, 42, 35, 0.22)),
+    linear-gradient(
+      90deg,
+      rgba(7, 42, 35, 0.92),
+      rgba(7, 42, 35, 0.72) 52%,
+      rgba(7, 42, 35, 0.22)
+    ),
     #174f42;
 }
 
@@ -404,6 +415,13 @@ main {
 .section-copy {
   color: var(--muted);
   line-height: 1.65;
+}
+
+.download-docs-list {
+  display: "flex";
+  flex-direction: "column";
+  gap: "8px";
+  margin: "15px 0";
 }
 
 .text-button {
@@ -711,8 +729,7 @@ main {
   justify-content: space-between;
   gap: 18px;
   min-height: 92px;
-  background:
-    linear-gradient(100deg, #101b72, #151f76 55%, #263cc4);
+  background: linear-gradient(100deg, #101b72, #151f76 55%, #263cc4);
   color: white;
   padding: 14px;
 }
@@ -794,7 +811,11 @@ main {
   display: block;
   height: 28px;
   background:
-    repeating-linear-gradient(90deg, transparent 0 10px, rgba(18, 26, 114, 0.18) 10px 12px),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 10px,
+      rgba(18, 26, 114, 0.18) 10px 12px
+    ),
     #eef1ff;
 }
 
@@ -1043,6 +1064,11 @@ textarea:focus {
     padding: 14px;
   }
 
+  .nav-admin-btn {
+    padding: 14px;
+    width: 100%;
+  }
+
   .brand {
     min-width: 0;
   }
@@ -1153,4 +1179,68 @@ textarea:focus {
   .month-day {
     min-height: 92px;
   }
+}
+
+.download-docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.download-doc-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  font-size: 14px;
+}
+
+.download-icon {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.nav-admin-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: #34423b;
+  font-weight: 700;
+  padding: 10px 13px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.nav-admin-btn:hover {
+  background: #e9efe8;
+}
+
+.nav-admin-btn.admin-active {
+  color: var(--green);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background: #f5f7f2;
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+
+.footer-mock-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.footer-mock-btn:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
 }
