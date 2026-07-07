@@ -1,11 +1,16 @@
 import { ChangeEvent } from "react";
 import { RegistrationMode } from "../../../types";
-import { Download, ExternalLink, FileText } from "lucide-react";
-import { ADULT_DOCUMENTS, YOUTH_DOCUMENTS } from "../../../data/constants";
+import { Download, FileText } from "lucide-react";
+import {
+  YOUTH_DOCUMENTS,
+  ADULT_DOCUMENTS,
+  RegistrationDoc,
+} from "../../../data/constants";
 
 type RegistrationSidebarProps = {
   registrationMode: RegistrationMode;
   onModeChange: (mode: RegistrationMode) => void;
+  currentDocs: RegistrationDoc[];
   applicationPdf: string;
   onFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
   selectedDocUrl: string;
@@ -15,14 +20,12 @@ type RegistrationSidebarProps = {
 export function RegistrationSidebar({
   registrationMode,
   onModeChange,
+  currentDocs,
   selectedDocUrl,
   onSelectDoc,
   applicationPdf,
   onFileChange,
 }: RegistrationSidebarProps) {
-  const currentDocs =
-    registrationMode === "mineur" ? YOUTH_DOCUMENTS : ADULT_DOCUMENTS;
-
   return (
     <aside className="registration-sidebar">
       <p className="notice">Aucun document papier ne sera pris en compte.</p>

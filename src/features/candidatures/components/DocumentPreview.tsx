@@ -1,20 +1,8 @@
-import { ADULT_DOCUMENTS, YOUTH_DOCUMENTS } from "../../../data/constants";
-import { RegistrationMode } from "../../../types";
-
 type DocumentPreviewProps = {
-  registrationMode: RegistrationMode;
   selectedDocUrl?: string;
 };
 
-export function DocumentPreview({
-  registrationMode,
-  selectedDocUrl,
-}: DocumentPreviewProps) {
-  const currentDocs =
-    registrationMode === "mineur" ? YOUTH_DOCUMENTS : ADULT_DOCUMENTS;
-  const mainFormUrl = currentDocs[0]?.url || "";
-  const mainFormName = currentDocs[0]?.fileName || "Formulaire.pdf";
-
+export function DocumentPreview({ selectedDocUrl }: DocumentPreviewProps) {
   return (
     <div className="document-preview">
       <h3>Aperçu & Remplissage en ligne</h3>

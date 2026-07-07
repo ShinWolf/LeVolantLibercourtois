@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { candidates } from "./data/InitialCandidates";
 import { Header } from "./components/layout/Header";
 import { Hero } from "./components/ui/Hero";
@@ -9,13 +9,13 @@ import { AdminSection } from "./features/admin/AdminSection";
 import { PlanningSection } from "./features/planning/PlanningSection";
 import { RegistrationSection } from "./features/candidatures/RegistrationSection";
 
-function App() {
-  const [stats, setStats] = useState({
-    licenceCount: 120,
-    slotsCount: 5,
-    teamsCount: 3,
-  });
+const stats = {
+  licenceCount: 120,
+  slotsCount: 5,
+  teamsCount: 3,
+};
 
+function App() {
   const { news, handleAddNews } = useNews();
 
   const [isAdmin, setIsAdmin] = useState(false);

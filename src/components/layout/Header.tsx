@@ -20,6 +20,7 @@ export function Header({ isAdmin, onUnlockAdmin }: HeaderProps) {
         className="brand"
         href="#top"
         aria-label="Accueil Le Volant Libercourtois"
+        onClick={closeMenu}
       >
         <span className="brand-mark">LVL</span>
         <span>
